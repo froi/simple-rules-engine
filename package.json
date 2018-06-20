@@ -1,0 +1,31 @@
+{
+  "name": "simple-rules-engine",
+  "version": "0.0.1",
+  "description": "A rules engine with a small API and simple rules configuration",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/froi/simple-rules-engine.git"
+  },
+  "keywords": [
+    "rules",
+    "rules engine"
+  ],
+  "author": "Froilan Irizarry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/froi/simple-rules-engine/issues"
+  },
+  "homepage": "https://github.com/froi/simple-rules-engine#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "obj-flatten": "^2.0.3"
+  }
+}
