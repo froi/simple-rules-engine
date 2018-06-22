@@ -4,7 +4,8 @@
   "description": "A rules engine with a small API and simple rules configuration",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec tests"
+    "test": "mocha --reporter spec tests",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
