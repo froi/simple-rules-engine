@@ -16,7 +16,7 @@ Rules are JSON objects and can be a single object or an array of them.
 
 The expected format is simple by design. Each rule object needs three fields:
 
-* field: the name of the field you want to apply this rule to
+* field: the name of the field you want to apply this rule to. For nested objects this value should be in dot-notation / flattened format. Ex. `field: author.name`
 * validation: the validation function you wish to perfom on field. This function needs to return a boolean value
 * outcome: the function with the logic to be applied to the target object if the validation is `true`. It's important to note that the outcome only runs when the validation returns a true value. This behavior is just the initial step.
 
