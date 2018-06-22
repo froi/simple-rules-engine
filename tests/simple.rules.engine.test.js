@@ -26,18 +26,19 @@ describe('apply rules', function() {
   describe('single rule', function () {
     let singleRule;
     before(function () {
-      rule = {
+      singleRule = {
         field: "name",
         validation: function (value) {
           return value === 'simple-rules-engine'
         },
         outcome: function (obj) {
           obj.passed = true
+          return obj
         }
       }
     })
     it('should return modified target', function() {
-      const engine = new SimpleRulesEngine(rule)
+      const engine = new SimpleRulesEngine(singleRule)
       return engine.execute(target)
         .then( result => {
           result.passed.should.be.equal(true)
@@ -55,15 +56,17 @@ describe('apply rules', function() {
           },
           outcome: function (obj) {
             obj.passed = true
+            return obj
           }
         },
         {
           field: "author.name",
           validation: function (value) {
-            return value === 'Froilan Irizarry'
+            return value === 'Axel Rivera'
           },
           outcome: function (obj) {
             obj.passed = false
+            return obj
           }
         },
         {
@@ -73,6 +76,7 @@ describe('apply rules', function() {
           },
           outcome: function (obj) {
             obj.correct_email = true
+            return obj
           }
         }
       ]
@@ -81,6 +85,8 @@ describe('apply rules', function() {
       const engine = new SimpleRulesEngine(rules)
       return engine.execute(target).then( result => {
         result.correct_email.should.be.equal(true)
+        result.passed.should.be.equal(true)
+        result.author.email.should.be.equal('hello@froilanirizarry.me')
       })
     })
   })
