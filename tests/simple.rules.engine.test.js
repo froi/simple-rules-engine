@@ -23,7 +23,7 @@ describe('apply rules', function() {
       }
     }
   })
-  describe('single rule', function () {
+  describe('single rule (sync)', function () {
     let singleRule;
     before(function () {
       singleRule = {
@@ -45,7 +45,7 @@ describe('apply rules', function() {
         })
     })
   })
-  describe('multiple rules', function() {
+  describe('multiple rules (sync)', function() {
     let rules;
     before(function() {
       rules = [
@@ -88,6 +88,131 @@ describe('apply rules', function() {
         result.passed.should.be.equal(true)
         result.author.email.should.be.equal('hello@froilanirizarry.me')
       })
+    })
+  })
+  describe('single rule (async)', function () {
+    let singleRule;
+    before(function () {
+      singleRule = {
+        field: "name",
+        validation: function (value) {
+          return Promise.resolve(value === 'simple-rules-engine')
+        },
+        outcome: function (obj) {
+          obj.passed = true
+          return Promise.resolve(obj)
+        }
+      }
+    })
+    it('should return modified target', function() {
+      const engine = new SimpleRulesEngine(singleRule)
+      return engine.execute(target)
+        .then( result => {
+          result.passed.should.be.equal(true)
+        })
+    })
+    it('should fail if promise rejected', function() {
+      const engine = new SimpleRulesEngine({
+        field: "name",
+        validation: function (value) {
+          return Promise.reject(new Error(`value=${value}`))
+        },
+        outcome: function (obj) {
+          obj.passed = true
+          return Promise.resolve(obj)
+        }
+      })
+      return engine.execute(target)
+        .catch( err => {
+          chai.expect(err).to.exist
+            .and.be.instanceof(Error)
+            .and.have.property('message', 'value=simple-rules-engine');
+        })
+    })
+  })
+  describe('multiple rules (async)', function() {
+    let rules;
+    before(function() {
+      rules = [
+        {
+          field: "name",
+          validation: function (value) {
+            return Promise.resolve(value === 'simple-rules-engine')
+          },
+          outcome: function (obj) {
+            obj.passed = true
+            return Promise.resolve(obj)
+          }
+        },
+        {
+          field: "author.name",
+          validation: function (value) {
+            return Promise.resolve(value === 'Axel Rivera')
+          },
+          outcome: function (obj) {
+            obj.passed = false
+            return Promise.resolve(obj)
+          }
+        },
+        {
+          field: "author.email",
+          validation: function (value) {
+            return Promise.resolve(value === 'hello@froilanirizarry.me')
+          },
+          outcome: function (obj) {
+            obj.correct_email = true
+            return Promise.resolve(obj)
+          }
+        }
+      ]
+    })
+    it('should return modified target', function () {
+      const engine = new SimpleRulesEngine(rules)
+      return engine.execute(target).then( result => {
+        result.correct_email.should.be.equal(true)
+        result.passed.should.be.equal(true)
+        result.author.email.should.be.equal('hello@froilanirizarry.me')
+      })
+    })
+    it('should fail if promise rejected', function() {
+      const engine = new SimpleRulesEngine([
+        {
+          field: "name",
+          validation: function (value) {
+            return Promise.reject(new Error(`value=${value}`))
+          },
+          outcome: function (obj) {
+            obj.passed = true
+            return Promise.resolve(obj)
+          }
+        },
+        {
+          field: "author.name",
+          validation: function (value) {
+            return Promise.resolve(value === 'Axel Rivera')
+          },
+          outcome: function (obj) {
+            obj.passed = false
+            return Promise.resolve(obj)
+          }
+        },
+        {
+          field: "author.email",
+          validation: function (value) {
+            return Promise.resolve(value === 'hello@froilanirizarry.me')
+          },
+          outcome: function (obj) {
+            obj.correct_email = true
+            return Promise.resolve(obj)
+          }
+        }
+      ])
+      return engine.execute(target)
+        .catch( err => {
+          chai.expect(err).to.exist
+            .and.be.instanceof(Error)
+            .and.have.property('message', 'value=simple-rules-engine');
+        })
     })
   })
 })
