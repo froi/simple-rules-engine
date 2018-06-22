@@ -26,6 +26,6 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
-    "obj-flatten": "^2.0.3"
+    "flattenizer": "^1.0.4"
   }
 }

@@ -1,5 +1,4 @@
-const flatten = require('obj-flatten')
-
+const flattenizer = require('flattenizer')
 class SimpleRulesEngine {
   constructor(rules) {
     this._rules = rules
@@ -19,24 +18,25 @@ class SimpleRulesEngine {
     const validationResult = await this._executeValidation(rule.validation, target[field])
 
     if(validationResult) {
-      const outcomeResult = await this._executeOutcome(rule.outcome, target)
-      return outcomeResult
+      return this._executeOutcome(rule.outcome, target)
     } else {
-      return target
+      return Promise.resolve(target)
     }
   }
 
   async execute(target) {
     const _target = target
-    const flattenedObj = flatten(target)
+    let flattenedObj = flattenizer.flatten(target)
 
     if(Array.isArray(this._rules)) {
-      this._rules.forEach(rule => {
-        return this._applyRule(rule, flattenedObj)
-      })
+      for(let rule of this._rules) {
+        flattenedObj = await this._applyRule(rule, flattenedObj)
+      }
+      return flattenizer.unflatten(flattenedObj)
     } else {
-      typeof(this._rules) === Object
-      return this._applyRule(this._rules, flattenedObj)
+      if (typeof this._rules === 'object') {
+        return this._applyRule(this._rules, flattenedObj)
+      }
     }
   }
 }
