@@ -15,10 +15,7 @@ class SimpleRulesEngine {
   async _applyRule(rule, target) {
     const field = rule.field;
 
-    const validationResult = await this._executeValidation(
-      rule.validation,
-      target[field]
-    );
+    const validationResult = await this._executeValidation(rule.validation, target[field]);
 
     if (validationResult) {
       return this._executeOutcome(rule.outcome, target);
@@ -28,7 +25,6 @@ class SimpleRulesEngine {
   }
 
   async execute(target) {
-    const _target = target;
     let flattenedObj = flattenizer.flatten(target);
 
     if (Array.isArray(this._rules)) {

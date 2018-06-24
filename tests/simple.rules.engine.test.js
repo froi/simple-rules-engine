@@ -1,6 +1,6 @@
 const chai = require('chai');
-const should = chai.should();
 const SimpleRulesEngine = require('../index');
+chai.should();
 
 describe('apply rules', function() {
   let target;
@@ -8,8 +8,7 @@ describe('apply rules', function() {
     target = {
       name: 'simple-rules-engine',
       github_url: '',
-      description:
-        'A rules engine with a small API and simple rules configuration ',
+      description: 'A rules engine with a small API and simple rules configuration ',
       license: {
         name: 'MIT',
         url: 'https://choosealicense.com/licenses/mit/'
