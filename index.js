@@ -13,9 +13,7 @@ class SimpleRulesEngine {
   }
 
   async _applyRule(rule, target) {
-    const field = rule.field;
-
-    const validationResult = await this._executeValidation(rule.validation, target[field]);
+    const validationResult = await this._executeValidation(rule.validation, rule.field ? target[rule.field] : target);
 
     if (validationResult) {
       return this._executeOutcome(rule.outcome, target);
