@@ -1,4 +1,10 @@
 {
   "arrowParens": "always",
-  "singleQuote": true
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.md",
+      "tabWidth": 1
+    }
+  ]
 }
