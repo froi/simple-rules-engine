@@ -26,7 +26,7 @@ The expected format is simple by design. Each rule object needs three fields:
 
 Ex.
 
-```javascript
+```
 const rule = {
   field: 'name',
   validation: function(value) {
