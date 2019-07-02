@@ -12,7 +12,7 @@ Please take a look at the [examples](https://github.com/froi/simple-rules-engine
 
 ### Installing
 
-`npm install simple-rules-engine`
+`npm install simple-rules-engine` or `npm i simple-rules-engine`
 
 ### Writing Rules
 
