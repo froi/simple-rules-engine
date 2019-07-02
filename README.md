@@ -42,3 +42,6 @@ const rule = {
 ### What happens when a validation return false
 
 The engine will just return the target object that was passed in. As mentioned above this might change soon. Any feedback on this would be welcomed as a [Github Issue](https://github.com/froi/simple-rules-engine/issues) using the feedback template.
+
+
+Misc change.
