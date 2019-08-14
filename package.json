@@ -26,12 +26,12 @@
   "homepage": "https://github.com/froi/simple-rules-engine#readme",
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^5.16.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^8.1.5",
-    "mocha": "^5.2.0",
+    "eslint": "^6.1.0",
+    "husky": "^3.0.3",
+    "lint-staged": "^9.2.1",
+    "mocha": "^6.2.0",
     "nyc": "^14.0.0",
-    "prettier": "1.13.5"
+    "prettier": "1.18.2"
   },
   "dependencies": {
     "flattenizer": "^1.0.4"
