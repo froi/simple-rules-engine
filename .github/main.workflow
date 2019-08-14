@@ -1,8 +1,7 @@
 workflow "Deploy to NPM" {
   on = "release"
   resolves = [
-    "Publish to npm",
-    "Publish to GPR",
+    "Publish to npm"
   ]
 }
 
