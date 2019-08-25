@@ -1,6 +1,9 @@
 ---
 name: Feedback or Discussion
 about: This issue type is to be used for feedback or discussions about the project.
+title: ''
+labels: ''
+assignees: ''
 
 ---
 
