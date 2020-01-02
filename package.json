@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "pretest": "npm run lint",
+    "format-check": "prettier --check **/*.js",
     "test": "nyc --reporter=lcov mocha tests",
     "postversion": "git push && git push --tags",
     "precommit": "lint-staged"
@@ -39,6 +39,10 @@
   "lint-staged": {
     "*.{js,md}": [
       "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
       "git add"
     ]
   }
