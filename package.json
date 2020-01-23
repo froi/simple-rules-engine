@@ -1,6 +1,6 @@
 {
   "name": "simple-rules-engine",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A rules engine with a small API and simple rules configuration",
   "main": "index.js",
   "scripts": {
