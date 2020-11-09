@@ -2,7 +2,7 @@
 
 A rules engine with a small API and simple rules configuration.
 
-[![Build Status](https://travis-ci.com/froi/simple-rules-engine.svg?branch=master)](https://travis-ci.com/froi/simple-rules-engine)
+![Linting and Tests](https://github.com/froi/simple-rules-engine/workflows/Linting%20and%20Tests/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/40369d8d7cc85a28d475/maintainability)](https://codeclimate.com/github/froi/simple-rules-engine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/40369d8d7cc85a28d475/test_coverage)](https://codeclimate.com/github/froi/simple-rules-engine/test_coverage)
 
