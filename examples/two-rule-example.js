@@ -4,10 +4,10 @@ const RulesEngine = require('../index');
 const rules = [
   {
     field: 'permissions.usageType',
-    validation: function(value) {
+    validation: function (value) {
       return value === 'openSource';
     },
-    outcome: function(obj) {
+    outcome: function (obj) {
       if (obj['repositoryURL']) {
         obj.score = obj.score ? obj.score + 1 : 1;
         return obj;
@@ -18,10 +18,10 @@ const rules = [
   },
   {
     field: 'permissions.usageType',
-    validation: function(value) {
+    validation: function (value) {
       return value === 'governmentWideReuse';
     },
-    outcome: function(obj) {
+    outcome: function (obj) {
       if (obj['repositoryURL']) {
         return obj;
       } else {

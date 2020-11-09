@@ -21,7 +21,7 @@ const sites = [
 
 const rules = [
   {
-    validation: function(obj) {
+    validation: function (obj) {
       if (obj['url']) {
         if (obj['url'].match(/^(http:\/\/||https:\/\/)localhost/g)) {
           obj.error = {
@@ -40,7 +40,7 @@ const rules = [
       }
       return true;
     },
-    outcome: function(obj) {
+    outcome: function (obj) {
       if (obj.error) {
         /* eslint-disable */
         console.error(`[ERROR]: ${obj.error.message}`, obj);

@@ -29,10 +29,10 @@ Ex.
 ```javascript
 const rule = {
   field: 'name',
-  validation: function(value) {
+  validation: function (value) {
     return value === 'John Snow';
   },
-  outcome: function(obj) {
+  outcome: function (obj) {
     obj.is_awesome = true;
     return obj;
   }
